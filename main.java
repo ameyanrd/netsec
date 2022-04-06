@@ -46,6 +46,7 @@ class Test {
             out.close();
             file.close();
 
+            System.out.println("\nSerialization:\n");
             System.out.println("Object has been serialized");
 
         }
@@ -55,8 +56,11 @@ class Test {
         }
     }
 
-    public static Demo Deserialize(Demo object, String filename) {
+    public static Demo Deserialize(String filename) {
         Demo object1 = null;
+
+        System.out.println("\nDeserialization:\n");
+
         try {
             // Reading the object from a file
             FileInputStream file = new FileInputStream(filename);
@@ -84,10 +88,12 @@ class Test {
         return object1;
     }
 
-    public static Demo LookAheadDeserialize(Demo object, String filename) {
+    public static Demo LookAheadDeserialize(String filename) {
         Demo object2 = null;
 
-        Set whitelist = new HashSet<String>(Arrays.asList(new String[]{"GoodClass1", "GoodClass2","Demo"}));
+        Set whitelist = new HashSet<String>(Arrays.asList(new String[]{"GoodClass1", "GoodClass2"}));
+
+        System.out.println("\nLook-ahead Deserialization:\n");
 
         try {
             // Reading the object from a file
@@ -124,10 +130,10 @@ class Test {
         Serialize(object, filename);
 
         // Deserialization
-        Deserialize(object, filename);
+        Deserialize(filename);
 
         // Look-ahead Deserialization
-        LookAheadDeserialize(object, filename);
+        LookAheadDeserialize(filename);
 
     }
 }
